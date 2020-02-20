@@ -12,7 +12,7 @@ import pageObjects.ArticlePO;
 import pageObjects.HomePagePO;
 import pageObjects.LoginPO;
 import pageObjects.RegistrationPO;
-import pageObjects.SettingsPO;
+import pageObjects.AccountPO;
 import static org.junit.Assert.*;
 
 @SuppressWarnings("deprecation")
@@ -20,7 +20,7 @@ public class Article {
 	TextContext textContext;
 	LoginPO login;
 	HomePagePO home;
-	SettingsPO settings;
+	AccountPO settings;
 	RegistrationPO reg;
 	ArticlePO article;
 
@@ -121,5 +121,36 @@ public class Article {
 	public void validateComment() throws Throwable {
 		Assert.assertEquals(article.cardBlockPresent(), false);
 	}
+	@And("^I click on other user post$")
+	public void clickOtherUserPost(){
+		article.clickOtherUserPost();
+	}
+	@And("^Check Feed$")
+	public void checkYourFeed(){
+		Assert.assertEquals(article.checkYourFeed(),true);
+	}
+	@And("^Click follow button$")
+	public void clickFollowBtn() throws InterruptedException{
+		article.clickFollowButton();
+		Thread.sleep(3000);
+	}
+	@And("^UnFollow Button shouldnt appear$")
+	public void checkUnFollowButton(){
+		Assert.assertEquals(article.checkIfUserIsAbleToFollow(),true);
+	}
+	@And("^Click unfollow button$")
+	public void clickUnFollowBtn(){
+		article.clickUnFollowButton();
 
+	}
+	@And("^Click on Author Feeed$")
+	public void clickOnAuthorFeed(){
+		article.clickOnAuthorFeed();
+
+	}
+	@And("^Check Feed should not have any post$")
+	public void checkNoFeed() throws InterruptedException{
+		Assert.assertEquals(article.checkNoArticleText().contains("No articles are here... yet."),true);
+
+	}
 }

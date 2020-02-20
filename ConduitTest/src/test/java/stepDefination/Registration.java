@@ -40,6 +40,10 @@ public class Registration {
 		registration.clickOnRegisterButton();
 
 	}
+	@And("^Check Have an Account Link$")
+	public void checkHaveAnAccLink(){
+		registration.clickOnHaveAnAccount();
+	}
 	@And("Enter incorrect details$")
 	public void incorrectDetails(){
 		registration.incorrectEmailAndUserName();

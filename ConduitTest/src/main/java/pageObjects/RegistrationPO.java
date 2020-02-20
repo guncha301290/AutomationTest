@@ -37,7 +37,8 @@ public class RegistrationPO {
 	private WebElement clickOnName;
 	@FindBy(how = How.XPATH, using = "//h4/following-sibling::p")
 	private WebElement checkbio;
-	
+	@FindBy(how = How.LINK_TEXT, using = "Have an account?")
+	private WebElement haveAnAccount;
 	
 	public void clickOnRegisterButton() {
 		registerButton.click();
@@ -71,5 +72,9 @@ public class RegistrationPO {
 	public void clickOnUserName(){
 		clickOnName.click();
 	}
-	
+	public void clickOnHaveAnAccount(){
+		haveAnAccount.isDisplayed();
+		haveAnAccount.click();
+		driver.navigate().refresh();
+	}
 }

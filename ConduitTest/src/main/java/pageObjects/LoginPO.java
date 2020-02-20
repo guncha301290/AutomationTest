@@ -30,7 +30,10 @@ public class LoginPO {
 	private WebElement newPassword;
 	@FindBy(how = How.XPATH, using = "//*[contains(text(),'Update Settings')]")
 	private WebElement updateSettings;
-
+	@FindBy(how = How.LINK_TEXT, using = "Need an account?")
+	private WebElement needAnAccount;
+	@FindBy(how = How.LINK_TEXT, using = "Need an account?")
+	private WebElement haveAnAccount;
 	public void enterCredentials(String name,String pwd) {
 		email.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
 		email.sendKeys(name);
@@ -51,6 +54,11 @@ public class LoginPO {
 	}
 	public void updateSettings(){
 		updateSettings.click();
+	}
+	public void checkNeedAccountLink(){
+		needAnAccount.isDisplayed();
+		needAnAccount.click();
+		driver.navigate().back();
 	}
 	
 }

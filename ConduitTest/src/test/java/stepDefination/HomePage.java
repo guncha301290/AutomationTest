@@ -35,4 +35,17 @@ public class HomePage {
 	public void checkMyFeedOnHomePage(){
 		Assert.assertEquals(home.checkFeedsOnHomePage(),false);
 	}
+	@And("^I click on Conduit Link$")
+	public void clickOnConduitLink(){
+		home.clickConduit();
+	}
+	@Then("^Home Page Logo should be displayed$")
+	public void homePage(){
+		Assert.assertEquals(home.homePageLogo(),true);
+	}
+	@And("^Click on Home Link$")
+	public void clickOnHome(){
+		home.clickOnHome();
+	}
+	
 }

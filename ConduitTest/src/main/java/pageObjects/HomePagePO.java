@@ -32,6 +32,12 @@ public class HomePagePO {
 	private WebElement navRegisterBtn;
 	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'article-preview') and text() = 'No articles are here... yet.']")
 	private WebElement feedPresentOnHomePage;
+	@FindBy(how = How.LINK_TEXT, using = "conduit")
+	private WebElement conduitLink;
+	@FindBy(how = How.CLASS_NAME, using = "logo-font")
+	private WebElement conduitLogoText;
+	@FindBy(how = How.LINK_TEXT, using = "Home")
+	private WebElement navHome;
 	public void devLogin() {
 		driver.get(FileReaderManager.getInstance().getConfigReader().getApplicationUrl());
 	}
@@ -43,7 +49,7 @@ public class HomePagePO {
 	public void clickSignIn() {
 		navLoginButton.click();
 	}
-
+	
 	public void clickSignUp() {
 		navRegisterBtn.click();
 	}
@@ -76,5 +82,14 @@ public class HomePagePO {
 		String tagLink=driver.findElement(By.linkText("butt")).getText();
 		boolean verify=tagName.contains(tagLink);
 		return verify;
+	}
+	public void clickConduit(){
+		conduitLink.click();
+	}
+	public boolean homePageLogo(){
+		return conduitLogoText.isDisplayed();
+	}
+	public void clickOnHome(){
+		navHome.click();
 	}
 }

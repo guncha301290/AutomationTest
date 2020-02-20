@@ -29,7 +29,7 @@ public class Account {
 		driver = textContext.getWebDriverManager().getDriver();
 	}
 
-	@And("^Click on Log Out Button to relogin with new password$")
+	@And("^Click on Log Out Button and relogin with new credentials$")
 	public void clickOnLogoutBtn() {
 		settings.clickOnSettings();
 		settings.clickOnLogout();

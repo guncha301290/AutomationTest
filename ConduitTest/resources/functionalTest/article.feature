@@ -11,6 +11,11 @@ Scenario: Write an article
 		When I click on New Post
 		And Enter article details
 		Then Article should be present/posted
+		And Click on Log Out Button and relogin with new credentials
+		And I login with credentials "testing0977@gmail.com" and "Login@123"
+		And I click on Global Feed
+		Then Article should be present/posted
+		
 		
 Scenario: Edit an article 
 		When User clicks on Edit Article

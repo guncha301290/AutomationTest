@@ -17,7 +17,7 @@ import managers.FileReaderManager;
 
 public class ArticlePO {
 	WebDriver driver;
-
+	String authorName=null;
 	public ArticlePO(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		this.driver = driver;
@@ -62,6 +62,17 @@ public class ArticlePO {
 	private WebElement deleteComment;
 	@FindBy(how = How.XPATH, using = "//div/div[@class='card-block']")
 	private WebElement cardBlock;
+	@FindBy(how = How.XPATH, using = "//div/div[@class='card-block']")
+	private WebElement clickOtherUserPost;
+	@FindBy(how = How.TAG_NAME, using = "h4")
+	private WebElement uname;
+	@FindBy(how = How.XPATH, using = "//button[@class='btn btn-sm action-btn btn-outline-secondary']")
+	private WebElement followButton;
+	@FindBy(how = How.XPATH, using = "//button[@class='btn btn-sm action-btn btn-secondary']")
+	private WebElement unfollowButton;
+	@FindBy(how = How.CSS, using = ".article-preview")
+	private WebElement noArticleText;
+	
 	public void clickOnNewPost() {
 		newPost.click();
 	}
@@ -133,5 +144,34 @@ public class ArticlePO {
 	public boolean cardBlockPresent(){
 		return cardBlock.isDisplayed();
 	}
-	
+	public void clickOtherUserPost(){
+		List<WebElement> post=driver.findElements(By.cssSelector("a.author"));
+		authorName=post.get(0).getText();
+		System.out.println("author name is"+authorName);
+		post.get(0).click();
+		String getAuthorName=uname.getText();
+		System.out.println("authorname"+getAuthorName);
+		
+	}
+	public void clickFollowButton(){
+		followButton.click();
+
+	}
+	public boolean checkIfUserIsAbleToFollow(){
+		return followButton.isDisplayed();
+	}
+	public void clickUnFollowButton(){
+		unfollowButton.click();
+	}
+	public boolean checkYourFeed(){
+		return driver.findElements(By.cssSelector("a.author")).get(0).getText().contains(authorName);
+		
+	}
+	public void clickOnAuthorFeed(){
+		driver.findElements(By.cssSelector("a.author")).get(0).click();
+	}
+	public String checkNoArticleText() throws InterruptedException{
+		Thread.sleep(3000);
+		return noArticleText.getText();
+	}
 }

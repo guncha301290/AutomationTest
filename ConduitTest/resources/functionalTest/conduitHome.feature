@@ -14,3 +14,9 @@ Scenario: Validate HomePage as LoggedIn User
 		When I login with credentials "testing0977@gmail.com" and "Login@123"
 		Then I should be able to see my published articles
 
+Scenario: Validate Conduit Link
+
+		Given I am on the Conduit Home Page
+		When I click on SIGN IN
+		And I click on Conduit Link
+		Then Home Page Logo should be displayed

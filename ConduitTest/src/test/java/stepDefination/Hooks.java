@@ -1,18 +1,9 @@
 package stepDefination;
-
-import java.io.File;
-import java.io.IOException;
-
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-
-import com.google.common.io.Files;
-
 import cucumber.TextContext;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
-import cucumber.api.java.Before;
-
 public class Hooks {
 	TextContext testContext;
 

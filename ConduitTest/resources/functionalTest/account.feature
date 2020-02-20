@@ -8,7 +8,7 @@ Background:
 
 Scenario: Check ChangePassword
 		When Enter New Password
-		And Click on Log Out Button to relogin with new password
+		And Click on Log Out Button and relogin with new credentials
 		And I enter new Correct UserName/email and Password
 		Then I am taken to the Account Page
 

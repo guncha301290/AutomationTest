@@ -5,6 +5,7 @@ Scenario: Validation Message in case details not entered
 
 		Given I am on the Conduit Home Page
 		When I Click on Register Link from Nav Link
+		And Check Have an Account Link
 		And Click On Register Button
 		Then Error Message should be displayed
 

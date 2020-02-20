@@ -12,10 +12,10 @@ import org.openqa.selenium.support.PageFactory;
 
 import managers.FileReaderManager;
 
-public class SettingsPO {
+public class AccountPO {
 	WebDriver driver;
 
-	public SettingsPO(WebDriver driver) {
+	public AccountPO(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		this.driver = driver;
 	}

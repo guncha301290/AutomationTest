@@ -9,18 +9,18 @@ import junit.framework.Assert;
 import pageObjects.HomePagePO;
 import pageObjects.LoginPO;
 import pageObjects.RegistrationPO;
-import pageObjects.SettingsPO;
+import pageObjects.AccountPO;
 
 @SuppressWarnings("deprecation")
-public class Settings {
+public class Account {
 	TextContext textContext;
 	LoginPO login;
 	HomePagePO home;
-	SettingsPO settings;
+	AccountPO settings;
 	RegistrationPO reg;
 	WebDriver driver;
 
-	public Settings(TextContext context) {
+	public Account(TextContext context) {
 		textContext = context;
 		login = textContext.getPageObjectManager().getTrueGreenLogin();
 		home = textContext.getPageObjectManager().getHomePage();

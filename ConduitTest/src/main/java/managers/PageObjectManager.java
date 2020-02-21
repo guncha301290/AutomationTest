@@ -6,7 +6,7 @@ import pageObjects.ArticlePO;
 import pageObjects.HomePagePO;
 import pageObjects.LoginPO;
 import pageObjects.RegistrationPO;
-import pageObjects.SettingsPO;
+import pageObjects.AccountPO;
 
 public class PageObjectManager {
 
@@ -14,7 +14,7 @@ public class PageObjectManager {
 	private HomePagePO home;
 	private LoginPO trueGreenLogin;
 	private RegistrationPO registration;
-	private SettingsPO settings;
+	private AccountPO settings;
 	private ArticlePO article;
 	public PageObjectManager(WebDriver driver) {
 		this.driver = driver;
@@ -34,8 +34,8 @@ public class PageObjectManager {
 
 	}
 
-	public SettingsPO getSettings(){
-		return (settings == null) ? settings = new SettingsPO(driver) : settings;
+	public AccountPO getSettings(){
+		return (settings == null) ? settings = new AccountPO(driver) : settings;
 
 	}
 	public ArticlePO getArticle(){

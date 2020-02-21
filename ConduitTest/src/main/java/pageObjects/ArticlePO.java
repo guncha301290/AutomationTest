@@ -25,11 +25,6 @@ public class ArticlePO {
 
 	@FindBy(how = How.LINK_TEXT, using = "New Post")
 	private WebElement newPost;
-	@FindBy(how = How.XPATH, using = "//input[@placeholder='Article Title']")
-	private WebElement articleTitle;
-	@FindBy(how = How.XPATH, using = "//input[@placeholder='What's this article about?']")
-	private WebElement articleAbout;
-
 	@FindBy(how = How.XPATH, using = "//textarea[@placeholder='Write your article (in markdown)']")
 	private WebElement articleBody;
 	@FindBy(how = How.XPATH, using = "//input[@placeholder='Enter tags']")
@@ -72,17 +67,20 @@ public class ArticlePO {
 	private WebElement unfollowButton;
 	@FindBy(how = How.CSS, using = ".article-preview")
 	private WebElement noArticleText;
-	
+	@FindBy(how = How.CSS, using = ".article-preview")
+	private WebElement readMore;
 	public void clickOnNewPost() {
 		newPost.click();
 	}
 
 	public void enterArticleInfo() throws InterruptedException {
 		List<WebElement> formFields = driver.findElements(By.xpath("//form/fieldset/fieldset/input"));
-		formFields.get(0).sendKeys("New Post");
-		formFields.get(1).sendKeys("Testing");
-		formFields.get(2).sendKeys("new");
-		driver.findElement(By.xpath("//form/fieldset/fieldset/textarea")).sendKeys("I am testing");
+		formFields.get(0).sendKeys(FileReaderManager.getInstance().getConfigReader().getArticleTitle());
+		formFields.get(1).sendKeys(FileReaderManager.getInstance().getConfigReader().getArticleDesc());
+		formFields.get(2).sendKeys(FileReaderManager.getInstance().getConfigReader().getArticleTag());
+		//driver.findElement(By.xpath("//form/fieldset/fieldset/textarea")).sendKeys("I am testing");
+		articleBody.sendKeys(FileReaderManager.getInstance().getConfigReader().getArticleBody());
+
 	}
 
 	public void clickPublish() {
@@ -90,7 +88,6 @@ public class ArticlePO {
 	}
 
 	public boolean checkIfArticleGotPublished(String text) throws InterruptedException {
-		Thread.sleep(5000);
 		home.click();
 		globalFeed.click();
 		boolean check=articleText.getText().contains(text);
@@ -119,19 +116,19 @@ public class ArticlePO {
 		List<WebElement> formFields = driver.findElements(By.xpath("//form/fieldset/fieldset/input"));
 		Thread.sleep(2000);
 		formFields.get(0).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-		formFields.get(0).sendKeys("New Post Edit");
+		formFields.get(0).sendKeys(FileReaderManager.getInstance().getConfigReader().getArticleEditTitle());
 		formFields.get(1).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-		formFields.get(1).sendKeys("Testing Edit");
+		formFields.get(1).sendKeys(FileReaderManager.getInstance().getConfigReader().getArticleEditDesc());
 		formFields.get(2).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-		formFields.get(2).sendKeys("new Edit");
-		driver.findElement(By.xpath("//form/fieldset/fieldset/textarea")).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-		driver.findElement(By.xpath("//form/fieldset/fieldset/textarea")).sendKeys("I am testing edit");
+		formFields.get(2).sendKeys(FileReaderManager.getInstance().getConfigReader().getArticleEditTag());
+		articleBody.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+		articleBody.sendKeys(FileReaderManager.getInstance().getConfigReader().getArticleEditBody());
 	}
 	public void deleteArticle(){
 		deleteArticle.click();
 	}
 	public void postComment(){
-		postComment.sendKeys("Hello Posting Comment");
+		postComment.sendKeys(FileReaderManager.getInstance().getConfigReader().getPostComment());
 		postCommentBtn.click();
 	}
 	public String validateComment(){
@@ -147,14 +144,13 @@ public class ArticlePO {
 	public void clickOtherUserPost(){
 		List<WebElement> post=driver.findElements(By.cssSelector("a.author"));
 		authorName=post.get(0).getText();
-		System.out.println("author name is"+authorName);
 		post.get(0).click();
 		String getAuthorName=uname.getText();
-		System.out.println("authorname"+getAuthorName);
 		
 	}
-	public void clickFollowButton(){
+	public void clickFollowButton() throws InterruptedException{
 		followButton.click();
+		Thread.sleep(3000);
 
 	}
 	public boolean checkIfUserIsAbleToFollow(){
@@ -173,5 +169,8 @@ public class ArticlePO {
 	public String checkNoArticleText() throws InterruptedException{
 		Thread.sleep(3000);
 		return noArticleText.getText();
+	}
+	public void readMoreLink(){
+		driver.findElements(By.xpath("//*[contains(text(),'Read more...')]")).get(0).click();
 	}
 }

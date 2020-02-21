@@ -8,6 +8,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
+import managers.FileReaderManager;
 import pageObjects.ArticlePO;
 import pageObjects.HomePagePO;
 import pageObjects.LoginPO;
@@ -76,7 +77,7 @@ public class Article {
 	@Then("^Article should be updated$")
 	public void verifyEdit() throws InterruptedException {
 
-		boolean check = article.checkIfArticleGotPublished("New Post Edit");
+		boolean check = article.checkIfArticleGotPublished(FileReaderManager.getInstance().getConfigReader().getArticleEditTitle());
 		Assert.assertEquals(check, true);
 
 	}
@@ -85,29 +86,23 @@ public class Article {
 	public void i_click_on_Global_Feed() throws Throwable {
 		article.clickOnGlobalFeed();
 	}
-
+	
 	@And("^I click on Delete article by navigating to my article$")
 	public void i_click_on_Delete_article() throws Throwable {
 		article.clickOnMyArticle();
 		article.deleteArticle();
 	}
 
-	@Then("^Article Should be deleted from all locations$")
-	public void article_Should_be_deleted_from_all_locations() throws Throwable {
-		boolean check = article.checkIfArticleGotPublished("New Post Edit");
-		Assert.assertEquals(check, false);
-	}
-
 	@And("^I post comment by navigating to my article$")
 	public void postComment() throws Throwable {
-		article.clickOnMyArticle();
+		//article.clickOnMyArticle();
 		article.postComment();
 	}
 
 	@Then("^Comment should be posted$")
 	public void checkCommentGotPosted() throws Throwable {
 
-		Assert.assertEquals(article.validateComment().contains("Hello Posting Comment"), true);
+		Assert.assertEquals(article.validateComment().contains(FileReaderManager.getInstance().getConfigReader().getPostComment()), true);
 
 	}
 
@@ -132,14 +127,14 @@ public class Article {
 	@And("^Click follow button$")
 	public void clickFollowBtn() throws InterruptedException{
 		article.clickFollowButton();
-		Thread.sleep(3000);
 	}
 	@And("^UnFollow Button shouldnt appear$")
 	public void checkUnFollowButton(){
 		Assert.assertEquals(article.checkIfUserIsAbleToFollow(),true);
 	}
 	@And("^Click unfollow button$")
-	public void clickUnFollowBtn(){
+	public void clickUnFollowBtn() throws InterruptedException{
+		Thread.sleep(3000);
 		article.clickUnFollowButton();
 
 	}
@@ -152,5 +147,9 @@ public class Article {
 	public void checkNoFeed() throws InterruptedException{
 		Assert.assertEquals(article.checkNoArticleText().contains("No articles are here... yet."),true);
 
+	}
+	@And("^User clicks on Read More Link$")
+	public void clicReadMOre(){
+		article.readMoreLink();
 	}
 }

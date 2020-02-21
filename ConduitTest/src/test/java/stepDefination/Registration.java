@@ -5,6 +5,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
+import managers.FileReaderManager;
 import pageObjects.HomePagePO;
 import pageObjects.LoginPO;
 import pageObjects.RegistrationPO;
@@ -15,7 +16,7 @@ public class Registration {
 	public String email = null;
 	LoginPO login;
 	HomePagePO home;
-
+	String changePwd=FileReaderManager.getInstance().getConfigReader().getChangePassword();
 	public Registration(TextContext context) {
 		textContext = context;
 		registration = textContext.getPageObjectManager().getRegistration();
@@ -63,7 +64,7 @@ public class Registration {
 	@And("^I enter new Correct UserName/email and Password$")
 	public void enterNewLoginDetails() throws InterruptedException {
 		home.clickSignIn();
-		login.enterCredentials(email, "Login@1234");
+		login.enterCredentials(email, changePwd);
 		login.clickOnLogin();
 	}
 

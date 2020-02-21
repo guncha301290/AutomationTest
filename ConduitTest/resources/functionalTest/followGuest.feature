@@ -1,5 +1,5 @@
 @reg
-Feature: Check Follow And Unfollow  User as a Guest User. It should not allow guest user to follow other user
+Feature: Guest user should not be able to follow other user.
 
 Background:
     Given I am on the Conduit Home Page

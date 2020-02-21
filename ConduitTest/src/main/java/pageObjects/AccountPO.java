@@ -14,6 +14,10 @@ import managers.FileReaderManager;
 
 public class AccountPO {
 	WebDriver driver;
+	String changePwd=FileReaderManager.getInstance().getConfigReader().getChangePassword();
+	String imageLink=FileReaderManager.getInstance().getConfigReader().getImageLink();
+	String imageSrc=FileReaderManager.getInstance().getConfigReader().getImageSrc();
+	String bio=FileReaderManager.getInstance().getConfigReader().getBio();
 
 	public AccountPO(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -53,11 +57,11 @@ public class AccountPO {
 		settings.click();
 	}
 	public void enterNewPass(){
-		newPassword.sendKeys("Login@1234");
+		newPassword.sendKeys(changePwd);
 	}
 	public void enterBioAndPicture(){
-		bioText.sendKeys("I am testing");
-		photo.sendKeys("https://homepages.cae.wisc.edu/~ece533/images/cat.png");
+		bioText.sendKeys(bio);
+		photo.sendKeys(imageLink);
 
 	}
 	public void clickFavArticle(){
@@ -71,14 +75,9 @@ public class AccountPO {
 	public String checkMyAcc(){
 		return checkbio.getText();
 	}
-	public void addPicture(){
-		photo.sendKeys("https://homepages.cae.wisc.edu/~ece533/images/cat.png");
-	}
 	public boolean verifyImage() throws InterruptedException{
 		Thread.sleep(2000);
-		boolean check=checkImage.getAttribute("src").contains("cat.png");
-		System.out.println(checkImage.getAttribute("src"));
-		System.out.println(check);
+		boolean check=checkImage.getAttribute("src").contains(imageSrc);
 		return check;
 	}
 	public void editProfileSettings(){
@@ -86,5 +85,8 @@ public class AccountPO {
 	}
 	public void removePicture(){
 		photo.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+	}
+	public void removeBio(){
+		bioText.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
 	}
 }

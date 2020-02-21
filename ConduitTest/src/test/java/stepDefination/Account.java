@@ -6,6 +6,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
+import managers.FileReaderManager;
 import pageObjects.HomePagePO;
 import pageObjects.LoginPO;
 import pageObjects.RegistrationPO;
@@ -19,6 +20,7 @@ public class Account {
 	AccountPO settings;
 	RegistrationPO reg;
 	WebDriver driver;
+	String bioText=FileReaderManager.getInstance().getConfigReader().getBio();
 
 	public Account(TextContext context) {
 		textContext = context;
@@ -40,7 +42,12 @@ public class Account {
 	public void enterNewPwd() {
 		settings.clickOnSettings();
 		settings.enterNewPass();
+
+	}
+	@And("^Click on Update Settings$")
+	public void clickUpdate() throws InterruptedException{
 		settings.updateSettings();
+		Thread.sleep(3000);
 
 	}
 
@@ -55,16 +62,16 @@ public class Account {
 	@Then("^My Account page shows my bio details and image$")
 	public void myAccount() throws InterruptedException {
 		settings.clickOnName();
-		Assert.assertEquals(settings.checkMyAcc().contains("I am testing"), true);
+		Assert.assertEquals(settings.checkMyAcc().contains(bioText), true);
 		Assert.assertEquals(settings.verifyImage(), true);
 
 	}
 
-	@And("^Remove Image$")
+	@And("^Remove Image And Bio$")
 	public void removePicture() throws InterruptedException {
 		settings.editProfileSettings();
 		settings.removePicture();
-		Thread.sleep(7000);
+		settings.removeBio();
 		settings.updateSettings();
 	}
 	@And("^I click on Favourite Article Tab on my Account$")

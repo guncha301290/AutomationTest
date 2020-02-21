@@ -90,5 +90,80 @@ public class ConfigFileReader {
 		String email="conduit"+new Date().getDate()+new Date().getHours()+new Date().getMinutes()+ new Date().getSeconds()+"@test.com";
 		return email;
 	}
-
+	public String getTestUserOne(){
+		String testUserOne=properties.getProperty("loggedInUser1");
+		return testUserOne;
+	}
+	public String getTestUserTwo(){
+		String testUserTwo=properties.getProperty("loggedInUser2");
+		return testUserTwo;
+	}
+	public String getPassword(){
+		String password=properties.getProperty("password");
+		return password;
+	}
+	public String getIncorrectPassword(){
+		String incorrectPassword=properties.getProperty("incorrectPass");
+		return incorrectPassword;
+	}
+	public String getChangePassword(){
+		String changePassword=properties.getProperty("changePass");
+		return changePassword;
+	}
+	public String getIncorrectUserName(){
+		String incorrectUserName=properties.getProperty("incorrectUserName");
+		return incorrectUserName;
+	}
+	public String getIncorrectEmail(){
+		String incorrectEmail=properties.getProperty("incorrectEmail");
+		return incorrectEmail;
+	}
+	public String getBio(){
+		String bio=properties.getProperty("bioText");
+		return bio;
+	}
+	public String getImageLink(){
+		String imageLink=properties.getProperty("imageLink");
+		return imageLink;
+	}
+	public String getImageSrc(){
+		String src=properties.getProperty("src");
+		return src;
+	}
+	public String getArticleTitle(){
+		String bioText=properties.getProperty("articleTitle");
+		return bioText;
+	}
+	public String getArticleDesc(){
+		String bioText=properties.getProperty("articleDes");
+		return bioText;
+	}
+	public String getArticleBody(){
+		String bioText=properties.getProperty("bioText");
+		return bioText;
+	}
+	public String getArticleTag(){
+		String bioText=properties.getProperty("tag");
+		return bioText;
+	}
+	public String getArticleEditTitle(){
+		String bioText=properties.getProperty("editArticleTitle");
+		return bioText;
+	}
+	public String getArticleEditDesc(){
+		String bioText=properties.getProperty("editArticleDesc");
+		return bioText;
+	}
+	public String getArticleEditBody(){
+		String bioText=properties.getProperty("editArticleBody");
+		return bioText;
+	}
+	public String getArticleEditTag(){
+		String bioText=properties.getProperty("editArticleTag");
+		return bioText;
+	}
+	public String getPostComment(){
+		String postComment=properties.getProperty("postComment");
+		return postComment;
+	}
 }

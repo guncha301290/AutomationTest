@@ -61,16 +61,6 @@ public class HomePagePO {
 	public boolean checkFeedsOnHomePage(){
 		return feedPresentOnHomePage.isDisplayed();
 	}
-	public void visibility() {
-		try {
-			new WebDriverWait(driver, 30).until(ExpectedConditions
-					.invisibilityOfElementLocated(By.xpath("//div[@id='LoadingAnimationModal' and @class='open']")));
-
-		} catch (Exception e) {
-
-		}
-
-	}
 	public void clickTag(){
 		tags=driver.findElements(By.xpath("//div[@class='tag-list']/a"));
 		tags.get(0).click();

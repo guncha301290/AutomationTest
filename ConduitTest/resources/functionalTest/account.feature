@@ -1,5 +1,5 @@
 @reg
-Feature: To Test Account related stories
+Feature: To Test Account related scenarios
 
 Background:
     Given I am on the Conduit Home Page
@@ -8,6 +8,7 @@ Background:
 
 Scenario: Check ChangePassword
 		When Enter New Password
+		And Click on Update Settings
 		And Click on Log Out Button and relogin with new credentials
 		And I enter new Correct UserName/email and Password
 		Then I am taken to the Account Page
@@ -15,7 +16,7 @@ Scenario: Check ChangePassword
 Scenario: Check Bio And Add Image Settings
 		When Enter The Bio and image
 		Then My Account page shows my bio details and image
-		And Remove Image
+		And Remove Image And Bio
 		
 		
   

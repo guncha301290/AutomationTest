@@ -49,9 +49,9 @@ public class LoginPO {
 	public boolean verfiyErrorMessage() {
 		return errorMessage.isDisplayed();
 	}
-	public void enterNewPassword(){
+/*	public void enterNewPassword(){
 		newPassword.sendKeys("Login@1234");
-	}
+	}*/
 	public void updateSettings(){
 		updateSettings.click();
 	}

@@ -3,7 +3,7 @@ Feature: Blog Related scenarios
 
 Background:
     Given I am on the Conduit Home Page
-    When I login with credentials "testing097@gmail.com" and "Login@123"
+    When I login with correct credentials
 		Then I am taken to the Account Page
 
 Scenario: Write an article 
@@ -12,11 +12,11 @@ Scenario: Write an article
 		And Enter article details
 		Then Article should be present/posted
 		And Click on Log Out Button and relogin with new credentials
-		And I login with credentials "testing0977@gmail.com" and "Login@123"
+		And I login with other user credentials
 		And I click on Global Feed
 		Then Article should be present/posted
-		
-		
+	
+				
 Scenario: Edit an article 
 		When User clicks on Edit Article
 		Then Article should be updated
@@ -32,6 +32,7 @@ Scenario: Hit Like
 Scenario: Post Comment
 
 		When I click on Global Feed
+		And User clicks on Read More Link
 		And I post comment by navigating to my article
 		Then Comment should be posted
 		
@@ -45,4 +46,4 @@ Scenario: Delete Article
 
 		When I click on Global Feed
 		And I click on Delete article by navigating to my article
-		Then Article Should be deleted from all locations
+		Then Check Feed should not have any post

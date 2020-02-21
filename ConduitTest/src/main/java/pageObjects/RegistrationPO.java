@@ -14,6 +14,8 @@ import managers.FileReaderManager;
 public class RegistrationPO {
 	WebDriver driver;
 	public String name=null;
+	String pwd=FileReaderManager.getInstance().getConfigReader().getPassword();
+
 	public RegistrationPO(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		this.driver = driver;
@@ -48,13 +50,13 @@ public class RegistrationPO {
 		name=FileReaderManager.getInstance().getConfigReader().getUserName();
 		userName.sendKeys(name);
 		email.sendKeys(registerEmail);
-		passWord.sendKeys("Login@123");
+		passWord.sendKeys(pwd);
 		return registerEmail;
 	}
 	public void incorrectEmailAndUserName(){
-		userName.sendKeys("aaaaaaaaaaaaaaaaaaaaaaaaa");
-		email.sendKeys("a@a");
-		passWord.sendKeys("Login@123");
+		userName.sendKeys(FileReaderManager.getInstance().getConfigReader().getIncorrectUserName());
+		email.sendKeys(FileReaderManager.getInstance().getConfigReader().getIncorrectEmail());
+		passWord.sendKeys(pwd);
 	}
 
 	public void clickOnRegistrationButton(){

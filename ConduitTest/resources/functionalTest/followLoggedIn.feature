@@ -11,11 +11,11 @@ Scenario: Follow And UnFollow User
 		And I click on other user post
 		And Click follow button
 		And Click on Home Link
-		Then Check Feed
-		And Click on Author Feeed
+		Then Feed is showing the post of user I have followed
+		And Click on Author Feed
 		And Click unfollow button
 		And Click on Home Link
-		Then Check Feed should not have any post
+		Then Your Feed should not show any post
 		
 
 		

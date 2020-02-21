@@ -62,8 +62,8 @@ public class Account {
 	@Then("^My Account page shows my bio details and image$")
 	public void myAccount() throws InterruptedException {
 		settings.clickOnName();
-		Assert.assertEquals(settings.checkMyAcc().contains(bioText), true);
-		Assert.assertEquals(settings.verifyImage(), true);
+		Assert.assertEquals("Bio Text is not displayed",settings.checkMyAcc().contains(bioText), true);
+		Assert.assertEquals("Image is not displayed",settings.verifyImage(), true);
 
 	}
 

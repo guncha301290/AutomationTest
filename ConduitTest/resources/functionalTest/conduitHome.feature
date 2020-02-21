@@ -13,4 +13,4 @@ Scenario: Validate Conduit Link
 		Given I am on the Conduit Home Page
 		When I click on SIGN IN
 		And I click on Conduit Link
-		Then Home Page Logo should be displayed
+		Then Home Page Banner should be displayed

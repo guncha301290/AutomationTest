@@ -56,7 +56,7 @@ public class Login {
 	}
 	@Then("^Error Message is displayed$")
 	public void checkErrorMsg() throws InterruptedException {
-		Assert.assertEquals(login.verfiyErrorMessage(), true);
+		Assert.assertEquals("Error Message is not displayed",login.verfiyErrorMessage(), true);
 
 	}
 

@@ -28,20 +28,16 @@ public class HomePage {
 
 	@Then("^Result should be shown accordingly$")
 	public void result_should_be_shown_accordingly() throws Throwable {
-		Assert.assertEquals(home.filterPost(), true);
+		Assert.assertEquals("On click of filterTags On Home Page, Results are not getting displayed",home.filterPost(), true);
 
-	}
-	@Then("^I should be able to see my published articles$")
-	public void checkMyFeedOnHomePage(){
-		Assert.assertEquals(home.checkFeedsOnHomePage(),false);
 	}
 	@And("^I click on Conduit Link$")
 	public void clickOnConduitLink(){
 		home.clickConduit();
 	}
-	@Then("^Home Page Logo should be displayed$")
+	@Then("^Home Page Banner should be displayed$")
 	public void homePage(){
-		Assert.assertEquals(home.homePageLogo(),true);
+		Assert.assertEquals("Home Page Banner Image is not displayed",home.homePageLogo(),true);
 	}
 	@And("^Click on Home Link$")
 	public void clickOnHome(){

@@ -31,7 +31,7 @@ public class Registration {
 		email = registration.enterDetails();
 		registration.clickOnRegisterButton();
 	}
-	@When("^I Click on Register Link from Nav Link$")
+	@When("^I Click on Sign Up$")
 	public void clickRegisterFromNav(){
 		home.clickSignUp();
 
@@ -41,7 +41,7 @@ public class Registration {
 		registration.clickOnRegisterButton();
 
 	}
-	@And("^Check Have an Account Link$")
+	@And("^Have an Account Link is displayed$")
 	public void checkHaveAnAccLink(){
 		registration.clickOnHaveAnAccount();
 	}
@@ -58,7 +58,7 @@ public class Registration {
 
 	@Then("^I am taken to the Account Page$")
 	public void userIsRegistered() throws Throwable {
-		Assert.assertEquals(registration.verifyRegistration(), true);
+		Assert.assertEquals("User is not registered",registration.verifyRegistration(), true);
 	}
 
 	@And("^I enter new Correct UserName/email and Password$")

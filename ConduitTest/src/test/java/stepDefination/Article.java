@@ -53,7 +53,7 @@ public class Article {
 	@Then("^Article should be present/posted$")
 	public void article_should_be_published() throws Throwable {
 		boolean check = article.checkIfArticleGotPublished("New Post");
-		Assert.assertEquals(check, true);
+		Assert.assertEquals("Article is not published",check, true);
 
 	}
 
@@ -63,8 +63,8 @@ public class Article {
 	}
 
 	@And("^like count should increase$")
-	public void icon_should_turn_green_and_show_count() throws Throwable {
-		Assert.assertEquals(article.checkHeartColor().contains("1"), true);
+	public void iconCountIncrease() throws Throwable {
+		Assert.assertEquals("Post Like Button is not working as expected",article.checkHeartColor().contains("1"), true);
 
 	}
 
@@ -78,7 +78,7 @@ public class Article {
 	public void verifyEdit() throws InterruptedException {
 
 		boolean check = article.checkIfArticleGotPublished(FileReaderManager.getInstance().getConfigReader().getArticleEditTitle());
-		Assert.assertEquals(check, true);
+		Assert.assertEquals("Article is not updated",check, true);
 
 	}
 
@@ -102,7 +102,7 @@ public class Article {
 	@Then("^Comment should be posted$")
 	public void checkCommentGotPosted() throws Throwable {
 
-		Assert.assertEquals(article.validateComment().contains(FileReaderManager.getInstance().getConfigReader().getPostComment()), true);
+		Assert.assertEquals("Comment is not posted",article.validateComment().contains(FileReaderManager.getInstance().getConfigReader().getPostComment()), true);
 
 	}
 
@@ -114,7 +114,7 @@ public class Article {
 
 	@Then("^Comment should be deleted$")
 	public void validateComment() throws Throwable {
-		Assert.assertEquals(article.cardBlockPresent(), false);
+		Assert.assertEquals("Comment is not deleted",article.cardBlockPresent(), false);
 	}
 	@And("^I click on other user post$")
 	public void clickOtherUserPost(){
@@ -122,7 +122,7 @@ public class Article {
 	}
 	@And("^Check Feed$")
 	public void checkYourFeed(){
-		Assert.assertEquals(article.checkYourFeed(),true);
+		Assert.assertEquals("Your feed is not showing any article",article.checkYourFeed(),true);
 	}
 	@And("^Click follow button$")
 	public void clickFollowBtn() throws InterruptedException{
@@ -130,7 +130,7 @@ public class Article {
 	}
 	@And("^UnFollow Button shouldnt appear$")
 	public void checkUnFollowButton(){
-		Assert.assertEquals(article.checkIfUserIsAbleToFollow(),true);
+		Assert.assertEquals("Follow User functionality is not working",article.checkIfUserIsAbleToFollow(),true);
 	}
 	@And("^Click unfollow button$")
 	public void clickUnFollowBtn() throws InterruptedException{
@@ -145,7 +145,7 @@ public class Article {
 	}
 	@And("^Check Feed should not have any post$")
 	public void checkNoFeed() throws InterruptedException{
-		Assert.assertEquals(article.checkNoArticleText().contains("No articles are here... yet."),true);
+		Assert.assertEquals("Your Feed is showing articles. Expected result -Your feed should not show any articles",article.checkNoArticleText().contains("No articles are here... yet."),true);
 
 	}
 	@And("^User clicks on Read More Link$")

@@ -46,4 +46,4 @@ Scenario: Delete Article
 
 		When I click on Global Feed
 		And I click on Delete article by navigating to my article
-		Then Check Feed should not have any post
+		Then Your Feed should not show any post
